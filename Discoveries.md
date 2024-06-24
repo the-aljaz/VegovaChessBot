@@ -13,3 +13,29 @@ V administratorskem računu, najdemo vsem poznano Windows 10 okolje, iz katerega
 Priporočamo, da se v administratorskem računu ustvari tudi golo kovinska varnostna kopija, podrobna navodila, kako se jo naredi, najdete [tukaj](https://www.windowscentral.com/how-make-full-backup-windows-10)
 
 ## Dan #2
+
+
+
+***
+# Zj pa actually po poglavjih
+
+## 1. Začetek
+### 1.0 Pred prvim zagonom
+#### 1.0.1 Priprava
+
+Pred prvim zagonom robotske roke, je priporočljivo prebrati vso uradno ABB dokumentacijo, predvsem pa poglavje o varnosti pri delu z robotsko roko.
+
+preveriti, če so vsi kabli pravilno priključeni.
+V krmilno enoto `OmniCore` ima več priljučkov. Kaj mora biti priključeno kam, najdete v spodnji tabeli
+| Priključek | Opis |
+|---|---|
+| X0 | Napajalni kabel |
+| X1 | Robotska roka |
+| X2 | Zunanji I/O priključki |
+| X4 | Nadzorna plošča `FlexPendant` |
+| WAN | Komunikacija s kamero |
+
+Ko smo preverili, da so vsi kabli pravilno priključeni na `OmniCore` krmilno enoto, lahko nadaljujemo s prižigom robota
+
+### 1.1 Prvi zagon
+Robotsko roko zaženemo tako, da napajalni kabel vključimo v električno omrežje in prižgemo stikalo `Q0` na `OmniCore` krmilniku. Na nadzorni plošči `FlexPendant` se bo pojavil `ABB`logo. Počakamo
