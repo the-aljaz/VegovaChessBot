@@ -11,11 +11,16 @@ Vsem upraviteljem ABB robotske roke, svetujemo menjavo tega gesla. <br>
 
 V administratorskem računu, najdemo vsem poznano Windows 10 okolje, iz katerega je bila odstranjena vsa nepotrebna programska oprema <br>
 Priporočamo, da se v administratorskem računu ustvari tudi golo kovinska varnostna kopija, podrobna navodila, kako se jo naredi, najdete [tukaj](https://www.windowscentral.com/how-make-full-backup-windows-10)
+***
+24.06.2024
+(vision callibration attempt; sockets workie workie)
+server (python) posilja ABBju (rapid) 0
++  discord
 
-## Dan #2
 
 
-
+***
+***
 ***
 # Zj pa actually po poglavjih
 
