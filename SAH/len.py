@@ -1,1 +1,0 @@
-print(len("bbbbbbbbbbbbbbbb00000000000000000000w00000000000wwww0wwwwwwwwwww"))

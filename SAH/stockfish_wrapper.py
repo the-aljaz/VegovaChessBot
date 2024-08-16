@@ -1,4 +1,3 @@
-import socket
 from stockfish import Stockfish
 
 
@@ -8,11 +7,7 @@ STOCKFISH_PATH = "stockfish\stockfish-windows-x86-64-avx2.exe" #MORE BIT RELATIV
 stockfish = Stockfish(path=STOCKFISH_PATH, depth=18, parameters={"Threads": 7, "Minimum Thinking Time": 8, "Skill Level": 20}) # 18 is the depth of the engine
 stockfish.update_engine_parameters({"Hash": 2048})
 
-
-
-
-
-def get_move(fen:str):
+def get_move(fen: str) -> tuple[str, str]:
 
     stockfish.set_fen_position(fen) #stockfish nastavi figure na mesta zapisana v FEN notaciji. Na koncu dobi črko w ali b ki mu pove ali naj dela potezo iz perspektive črnega ali belega igralca
 

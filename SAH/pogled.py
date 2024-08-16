@@ -3,7 +3,7 @@ import math
 import numpy as np
 
 
-def get_fen_from_pic():
+def get_fen_from_pic() -> str:
     # Setup camera 
     cap = cv2.VideoCapture(2) 
     

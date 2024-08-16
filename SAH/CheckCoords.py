@@ -7,36 +7,35 @@ squares = {
         "f8": "6", "f7": "14", "f6": "22", "f5": "30", "f4": "38", "f3": "46", "f2": "54", "f1": "62", 
         "g8": "7", "g7": "15", "g6": "23", "g5": "31", "g4": "39", "g3": "47", "g2": "55", "g1": "63", 
         "h8": "8", "h7": "16", "h6": "24", "h5": "32", "h4": "40", "h3": "48", "h2": "56", "h1": "64",     
-    } #Ta dict nam ko mu damo polje povee njegovo mesto v arrayu povecano za 1. Zakaj povecano za 1? \_(*-*)_/
+    } #Ta dict nam ko mu damo polje povee njegovo mesto v arrayu povecano za 1. Zakaj povecano za 1? \_(*-*)_/    ¯\_(ツ)_/¯
 
-def check_square(fen, square): #Pričakuje FEN ki ima notri števila namesto ničel (!!)
+def check_square(fen: str, square: str) -> bool: #Pričakuje FEN ki ima notri števila namesto ničel (!!)
 
-    temp1 = ""
+    out = ""
 
     for i in fen: #Iz FEN-a odstrani ničle
         if i.isalpha() == True:
-            temp1+=i
+            out+=i
         elif i.isnumeric()== True:
             for i in range(int(i)):
-                temp1+="0"
+                out+="0"
 
-    return temp1[int(squares[square])-1]!="0" #-1 ker se zacne pri 0 ns dictionary pa zacne pri 1
+    return out[int(squares[square])-1]!="0" #-1 ker se zacne pri 0 ns dictionary pa zacne pri 1. Sorry ur on your own :P
 
+def Piece_height(fen: str, square: str) -> str: #Pričakuje FEN z števili namesto ničel
 
-def Piece_height(fen, square): #Pričakuje FEN z števili namesto ničel
-
-    temp1 = ""
+    out = ""
     
     for i in fen:
         if i.isalpha() == True:
-            temp1+=i
+            out+=i
         elif i.isnumeric()== True:
             for i in range(int(i)):
-                temp1+="0"
+                out+="0"
 
-    if temp1[int(squares[square])-1].lower() == "q" or temp1[int(squares[square])-1].lower() == "k": #Za kralja in kraljico se spusti 120mm
+    if out[int(squares[square])-1].lower() == "q" or out[int(squares[square])-1].lower() == "k": #Za kralja in kraljico se spusti 120mm
         return "120"
-    elif temp1[int(squares[square])-1].lower() == "b" or temp1[int(squares[square])-1].lower() == "n": #Za konja in tekača se susti 140mm
+    elif out[int(squares[square])-1].lower() == "b" or out[int(squares[square])-1].lower() == "n": #Za konja in tekača se susti 140mm
 
         return "140"
     
@@ -44,18 +43,18 @@ def Piece_height(fen, square): #Pričakuje FEN z števili namesto ničel
 
         return "164"
 
-def change_fen(move, fen): #Pričakuje FEN z števili namesto ničel
+def change_fen(move: str, fen: str) -> str: #Pričakuje FEN z števili namesto ničel
     start = move[:2]
     end = move[2:]
-    temp1 = ""
+    out = ""
     for i in fen: #Doda ničle
         if i.isalpha() == True:
-            temp1+=i
+            out+=i
         elif i.isnumeric()== True:
             for i in range(int(i)):
-                temp1+="0"
+                out+="0"
 
-    fen = temp1[:64]
+    fen = out[:64]
 
     fen = list(fen)
     fen[(int(squares[end])-1)] = fen[(int(squares[start])-1)] #Na končno mesto da figuro iz začetka
@@ -85,6 +84,3 @@ def change_fen(move, fen): #Pričakuje FEN z števili namesto ničel
             zeros += 1
 
     return finalout
-
-print(change_fen("e2e4", "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"))
-    

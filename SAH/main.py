@@ -7,25 +7,18 @@ import time #Za funkcije čakanja
 import pogled #S kamero pogleda ploščo in nam pove ali so polja prazna, oz. katere barve je figura na njih
 import Graphics #GUI za pokazat FEN 
 
+#! podajas se na nevarno potovanje v notranjost neraziskane kode. Srečno vojak 🫡s
+
 HOST = "192.168.125.123" #IP od računalnika za namene socket komunikacije
 PORT = 65432 #Št. porta za namene socket komunikacije 
 
 prev = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR" #FEN začetne pozicije 
 
-def send_coords(c_socket, coords:list): #Roki pošlje koordinate po socketu (sprejme socket ki ga želi na clientu in pa seznam koordinat)
-    c_socket.sendall(str(coords[0]).encode()) #Pošlje prvo koordinato
-    time.sleep(0.1) #Delay da ni prehitro
-    c_socket.sendall(str(coords[1]).encode())
-    time.sleep(0.1)
-    c_socket.sendall(str(coords[2]).encode())
-    time.sleep(0.1)
-
-    c_socket.sendall(str(coords[3]).encode())
-    time.sleep(0.1)
-    c_socket.sendall(str(coords[4]).encode())
-    time.sleep(0.1)
-    c_socket.sendall(str(coords[5]).encode())
-    time.sleep(0.1)
+def send_coords(c_socket:socket, coords:list) -> None: #Roki pošlje koordinate po socketu (sprejme socket ki ga želi na clientu in pa seznam koordinat)
+    for i in range(6):
+        c_socket.sendall(str(coords[i]).encode()) #Pošlje prvo koordinato
+        time.sleep(0.1) #Delay da ni prehitro
+    
 
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_socket.bind((HOST, PORT))
@@ -34,28 +27,25 @@ server_socket.listen(5)
 print(f'Server listening on {HOST}:{PORT}')
 
 GotMove = False #Bool če ima potezo
-cords = []
-konec=["E", "0", "0", "0", "0", "0"] #Te koordinate pošljemo če se igra konča
+coordinates = []
+konec=["E", "0", "0", "0", "0", "0"] #Te koordinate pošljemo če se igra konča, da roka ne vrže error ampak naredi nekaj predvidjivega
 
 while True:
-    client_socket, addr = server_socket.accept() #Odpre socket
-    while True:
-        
+    client_socket, addr = server_socket.accept() #Odpre socket in čaka na povezavo clienta (roke)
+    while True: # ko se ta povezava zgodi delamo še en while loop
         # dobimo podatke od roke
         data = client_socket.recv(1024).decode('utf-8') # 1MB max
         if not data:
             break
-        if data == "move": #Če po socketu prejmemo move, roki vrnemo potezo
+        if data == "move": # Če po socketu prejmemo move, pomeni da je roka pripravljena na potezo in roki vrnemo potezo
             seznam_koordinat = [] #Sprazne seznam koordinat
             BnW = pogled.get_fen_from_pic() #iz slike vidi ali so polja prazna, ali imajo črne ali bele igure    
-            print(1)
             prev = FEnotation.get_fen(prev, BnW) #Na podlagi tega ali so polja prazna in barv figur na njih nam pove katera figura je kje
 
             Graphics.see_board(prev) #Poaže igro z GUI
-            #poteza za stockfish
-            print(prev)
+            # poteza za stockfish   vvvvvvvvvvvvvvv
             stock = stockfish_wrapper.get_move(prev + " b") 
-            move, temp = stock[0],  stock[1]
+            move, temp = stock[0], stock[1]
 
             if CheckCoords.check_square(prev, move[2:])!=True: #Če na cilju še ni figure oz. če roka ne rabi "jesti"
                 seznam_koordinat.append(coords.get_coords(move[:2]))
@@ -75,25 +65,23 @@ while True:
             prev = temp
             Graphics.see_board(prev)
             GotMove = True
-            cords.clear()
+            coordinates.clear()
             time.sleep(0.3)
-            for i in range (0, 2): #Na coords da 1. del poteze
-                cords.append(str(seznam_koordinat[0][0]))
-                cords.append(str(seznam_koordinat[0][1]))
-                cords.append(str(seznam_koordinat[0][2]))
+            for i in range (2): #Na coords da 1. del poteze
+                for j in range(3):
+                    coordinates.append(str(seznam_koordinat[0][i]))
                 seznam_koordinat.pop(0)
         
         if data == "move2" and len(seznam_koordinat)!=0: #Move2 -> roka pričakuje 2. del poteze, če seznam koordinat ni prazen ga dodamo na cords
-            cords.clear()
-            for i in range (0, 2):
-                cords.append(str(seznam_koordinat[0][0]))
-                cords.append(str(seznam_koordinat[0][1]))
-                cords.append(str(seznam_koordinat[0][2]))
+            coordinates.clear()
+            for i in range (2):
+                for j in range(3):
+                    coordinates.append(str(seznam_koordinat[0][i]))
                 seznam_koordinat.pop(0)
 
-        elif data == "move2" and len(seznam_koordinat)==0: #Če je seznam koordinat prazen pomeni da roka ne bo jedla in mu damo koordinate ki nakazujejo konec poteze
-            cords.clear()
+        elif data == "move2" and len(seznam_koordinat) == 0: #Če je seznam koordinat prazen pomeni da roka ne bo jedla in mu damo koordinate ki nakazujejo konec poteze
+            coordinates.clear()
             for i in konec:
-                cords.append(i)   
+                coordinates.append(i)   
 
-        send_coords(client_socket, cords)
+        send_coords(client_socket, coordinates)

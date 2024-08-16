@@ -2,7 +2,7 @@
 import pygame
 import time
 
-def see_board(fen):
+def see_board(fen: str):
 
     usable_fen=""
 
@@ -32,25 +32,23 @@ def see_board(fen):
     pygame.display.set_caption('image')
 
     # naredi surface po katerem lahko rises
-    background = pygame.image.load("C:\\Users\\Robot\\Desktop\\SAH\\board.png").convert()
+    background = pygame.image.load("./graphics/board.png").convert()
 
     pieces = {
+        "Q": pygame.transform.scale(pygame.image.load("./graphics/white/Q.png").convert_alpha(), (85, 85)), 
+        "K": pygame.transform.scale(pygame.image.load("./graphics/white/K.png").convert_alpha(), (85, 85)),
+        "B": pygame.transform.scale(pygame.image.load("./graphics/white/B.png").convert_alpha(), (85, 85)),
+        "N": pygame.transform.scale(pygame.image.load("./graphics/white/N.png").convert_alpha(), (85, 85)),
+        "R": pygame.transform.scale(pygame.image.load("./graphics/white/R.png").convert_alpha(), (85, 85)),
+        "P": pygame.transform.scale(pygame.image.load("./graphics/white/P.png").convert_alpha(), (85, 85)),
 
-    "Q": pygame.transform.scale(pygame.image.load("C:\\Users\\Robot\\Desktop\\SAH\\white\\Q.png").convert_alpha(), (85, 85)), 
-    "K": pygame.transform.scale(pygame.image.load("C:\\Users\\Robot\\Desktop\\SAH\\white\\K.png").convert_alpha(), (85, 85)),
-    "B": pygame.transform.scale(pygame.image.load("C:\\Users\\Robot\\Desktop\\SAH\\white\\B.png").convert_alpha(), (85, 85)),
-    "N": pygame.transform.scale(pygame.image.load("C:\\Users\\Robot\\Desktop\\SAH\\white\\N.png").convert_alpha(), (85, 85)),
-    "R": pygame.transform.scale(pygame.image.load("C:\\Users\\Robot\\Desktop\\SAH\\white\\R.png").convert_alpha(), (85, 85)),
-    "P": pygame.transform.scale(pygame.image.load("C:\\Users\\Robot\\Desktop\\SAH\\white\\P.png").convert_alpha(), (85, 85)),
 
-
-    "q": pygame.transform.scale(pygame.image.load("C:\\Users\\Robot\\Desktop\\SAH\\black\\Q.png").convert_alpha(), (85, 85)),
-    "k": pygame.transform.scale(pygame.image.load("C:\\Users\\Robot\\Desktop\\SAH\\black\\K.png").convert_alpha(), (85, 85)),
-    "b": pygame.transform.scale(pygame.image.load("C:\\Users\\Robot\\Desktop\\SAH\\black\\B.png").convert_alpha(), (85, 85)),
-    "n": pygame.transform.scale(pygame.image.load("C:\\Users\\Robot\\Desktop\\SAH\\black\\N.png").convert_alpha(), (85, 85)),
-    "r": pygame.transform.scale(pygame.image.load("C:\\Users\\Robot\\Desktop\\SAH\\black\\R.png").convert_alpha(), (85, 85)),
-    "p": pygame.transform.scale(pygame.image.load("C:\\Users\\Robot\\Desktop\\SAH\\black\\P.png").convert_alpha(), (85, 85))
-
+        "q": pygame.transform.scale(pygame.image.load("./graphics/black/Q.png").convert_alpha(), (85, 85)),
+        "k": pygame.transform.scale(pygame.image.load("./graphics/black/K.png").convert_alpha(), (85, 85)),
+        "b": pygame.transform.scale(pygame.image.load("./graphics/black/B.png").convert_alpha(), (85, 85)),
+        "n": pygame.transform.scale(pygame.image.load("./graphics/black/N.png").convert_alpha(), (85, 85)),
+        "r": pygame.transform.scale(pygame.image.load("./graphics/black/R.png").convert_alpha(), (85, 85)),
+        "p": pygame.transform.scale(pygame.image.load("./graphics/black/P.png").convert_alpha(), (85, 85))
     }
 
 
@@ -64,6 +62,33 @@ def see_board(fen):
 
 
     pygame.display.flip()
+    pygame.display.update()
     time.sleep(1)
 
 
+# GREFIK
+# ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣤⣤⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+# ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⠀⠀⠀⢀⣴⠟⠉⠀⠀⠀⠈⠻⣦⡀⠀⠀⠀⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+# ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣷⣀⢀⣾⠿⠻⢶⣄⠀⠀⣠⣶⡿⠶⣄⣠⣾⣿⠗⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+# ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⢻⣿⣿⡿⣿⠿⣿⡿⢼⣿⣿⡿⣿⣎⡟⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+# ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡟⠉⠛⢛⣛⡉⠀⠀⠙⠛⠻⠛⠑⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+# ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣧⣤⣴⠿⠿⣷⣤⡤⠴⠖⠳⣄⣀⣹⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+# ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⣀⣟⠻⢦⣀⡀⠀⠀⠀⠀⣀⡈⠻⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+# ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣼⡿⠉⡇⠀⠀⠛⠛⠛⠋⠉⠉⠀⠀⠀⠹⢧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+# ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⡟⠀⢦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠃⠀⠈⠑⠪⠷⠤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+# ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣾⣿⣿⣿⣦⣼⠛⢦⣤⣄⡀⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠑⠢⡀⠀⠀⠀⠀⠀
+# ⠀⠀⠀⠀⠀⠀⠀⢀⣠⠴⠲⠖⠛⠻⣿⡿⠛⠉⠉⠻⠷⣦⣽⠿⠿⠒⠚⠋⠉⠁⡞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢦⠀⠀⠀⠀
+# ⠀⠀⠀⠀⠀⢀⣾⠛⠁⠀⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠤⠒⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢣⠀⠀⠀
+# ⠀⠀⠀⠀⣰⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣑⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⡇⠀⠀
+# ⠀⠀⠀⣰⣿⣁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⣧⣄⠀⠀⠀⠀⠀⠀⢳⡀⠀
+# ⠀⠀⠀⣿⡾⢿⣀⢀⣀⣦⣾⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡰⣫⣿⡿⠟⠻⠶⠀⠀⠀⠀⠀⢳⠀
+# ⠀⠀⢀⣿⣧⡾⣿⣿⣿⣿⣿⡷⣶⣤⡀⠀⠀⠀⠀⠀⠀⠀⢀⡴⢿⣿⣧⠀⡀⠀⢀⣀⣀⢒⣤⣶⣿⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇
+# ⠀⠀⡾⠁⠙⣿⡈⠉⠙⣿⣿⣷⣬⡛⢿⣶⣶⣴⣶⣶⣶⣤⣤⠤⠾⣿⣿⣿⡿⠿⣿⠿⢿⣿⣿⣿⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇
+# ⠀⣸⠃⠀⠀⢸⠃⠀⠀⢸⣿⣿⣿⣿⣿⣿⣷⣾⣿⣿⠟⡉⠀⠀⠀⠈⠙⠛⠻⢿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇
+# ⠀⣿⠀⠀⢀⡏⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⠿⠿⠛⠛⠉⠁⠀⠀⠀⠀⠀⠉⠠⠿⠟⠻⠟⠋⠉⢿⣿⣦⡀⢰⡀⠀⠀⠀⠀⠀⠀⠁
+# ⢀⣿⡆⢀⡾⠀⠀⠀⠀⣾⠏⢿⣿⣿⣿⣯⣙⢷⡄⠀⠀⠀⠀⠀⢸⡄⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣿⣻⢿⣷⣀⣷⣄⠀⠀⠀⠀⢸⠀
+# ⢸⠃⠠⣼⠃⠀⠀⣠⣾⡟⠀⠈⢿⣿⡿⠿⣿⣿⡿⠿⠿⠿⠷⣄⠈⠿⠛⠻⠶⢶⣄⣀⣀⡠⠈⢛⡿⠃⠈⢿⣿⣿⡿⠀⠀⠀⠀⠀⡀
+# ⠟⠀⠀⢻⣶⣶⣾⣿⡟⠁⠀⠀⢸⣿⢅⠀⠈⣿⡇⠀⠀⠀⠀⠀⣷⠂⠀⠀⠀⠀⠐⠋⠉⠉⠀⢸⠁⠀⠀⠀⢻⣿⠛⠀⠀⠀⠀⢀⠇
+# ⠀⠀⠀⠀⠹⣿⣿⠋⠀⠀⠀⠀⢸⣧⠀⠰⡀⢸⣷⣤⣤⡄⠀⠀⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡆⠀⠀⠀⠀⡾⠀⠀⠀⠀⠀⠀⢼⡇
+# ⠀⠀⠀⠀⠀⠙⢻⠄⠀⠀⠀⠀⣿⠉⠀⠀⠈⠓⢯⡉⠉⠉⢱⣶⠏⠙⠛⠚⠁⠀⠀⠀⠀⠀⣼⠇⠀⠀⠀⢀⡇⠀⠀⠀⠀⠀⠀⠀⡇
+# ⠀⠀⠀⠀⠀⠀⠻⠄⠀⠀⠀⢀⣿⠀⢠⡄⠀⠀⠀⣁⠁⡀⠀⢠⠀⠀⠀⠀⠀⠀⠀⠀⢀⣐⡟⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⢠⡇
