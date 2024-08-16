@@ -9,7 +9,7 @@ def get_fen_from_pic() -> str:
     
 
     x = 25
-    y = 55
+    y = 32
     counter = 1
     modra = 3
 
